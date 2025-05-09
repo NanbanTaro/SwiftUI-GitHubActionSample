@@ -1,0 +1,21 @@
+name SwiftLint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint: 
+    runs_on: macos_latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        uses: brew install swiftlint
+
+      - name: Run SwiftLint
+        uses: swiftlint
