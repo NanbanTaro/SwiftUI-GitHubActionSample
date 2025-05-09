@@ -37,10 +37,23 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      # - name: Setup Swift
-      #   uses: swift-actions/setup-swift@v2
-      #   with:
-      #     swift-version: '6.1'
+      - name: Run Danger SwiftLint
+        uses: 417-72KI/danger-swiftlint@v6.1
+        with:
+          arg: --failOnErrors
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '6.1'
+
+      - name: Build
+        run: swift build
+      
+      - name: Run Unit Tests
+        run: swift test
 
       # - name: Danger
       #   uses: danger/swift@3.21.1
@@ -49,9 +62,4 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Danger SwiftLint
-        uses: 417-72KI/danger-swiftlint@v6.1
-        with:
-          arg: --failOnErrors
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
