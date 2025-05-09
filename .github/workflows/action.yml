@@ -41,7 +41,7 @@ jobs:
         with:
           swift-version: '6.1'
       - name: Danger
-        uses: danger/swift@3.21.2
+        uses: danger/swift@3.21.1
         with:
           arg: --failOnErrors --no-publish-check
         env:
