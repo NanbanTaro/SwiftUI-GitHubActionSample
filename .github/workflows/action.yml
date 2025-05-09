@@ -12,7 +12,7 @@ on:
 
 jobs:
   lint: 
-    runs_on: macos_latest
+    runs-on: macos_latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
