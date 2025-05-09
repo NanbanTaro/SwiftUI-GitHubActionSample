@@ -1,5 +1,5 @@
 //
-//  GitHubActionSampleAppTests.swift
+//  ContentViewModelTests.swift
 //  GitHubActionSampleApp
 //
 //  Created by NanbanTaro on 2025/05/09.
@@ -10,7 +10,7 @@
 import Testing
 
 @MainActor
-struct GitHubActionSampleAppTests {
+struct ContentViewModelTests {
 
     var viewModel: ContentViewModel!
 
