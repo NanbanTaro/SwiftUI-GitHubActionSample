@@ -1,5 +1,4 @@
-name SwiftLint
-
+name: SwiftLint
 on:
   pull_request:
     types:
