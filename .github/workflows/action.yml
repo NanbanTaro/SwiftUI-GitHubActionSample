@@ -1,4 +1,26 @@
-name: SwiftLint
+# name: SwiftLint
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#       - synchronize
+#     branches:
+#       - main
+
+# jobs:
+#   lint: 
+#     runs-on: macos_latest
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v4
+#       - name: Install SwiftLint
+#         run: brew install swiftlint
+#       - name: Run SwiftLint
+#         run: swiftlint
+
+
+name: Danger Swift
+
 on:
   pull_request:
     types:
@@ -8,12 +30,19 @@ on:
       - main
 
 jobs:
-  lint: 
-    runs-on: macos_latest
+  danger:
+    name: Run Danger Swift
+    runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Install SwiftLint
-        run: brew install swiftlint
-      - name: Run SwiftLint
-        run: swiftlint
+      - name: Setup Swift
+        uses: actions/setup-swift@v3
+        with:
+          swift-version: '6.1'
+      - name: Danger
+        uses: danger/swift@3.15.0
+        with:
+          arg: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
