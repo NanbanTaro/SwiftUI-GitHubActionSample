@@ -1,6 +1,9 @@
 # ルール一覧
 # https://realm.github.io/SwiftLint/rule-directory.html
 
+excluded:
+  - GitHubActionSampleAppTests
+
 disabled_rules:
   - notification_center_detachment
   - trailing_comma
@@ -99,8 +102,8 @@ type_name:
 
 # SwiftUIでの長い宣言を抑制する
 closure_body_length:
-   warning: 50
-   error: 100
+  warning: 50
+  error: 100
 
 # ObjCの型を許可する場合は明示的に記載する
 legacy_objc_type:

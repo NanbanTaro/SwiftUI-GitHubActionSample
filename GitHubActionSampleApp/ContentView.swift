@@ -9,17 +9,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var viewModel: ContentViewModel
+
+    // MARK: - Initialize
+
+    init(viewModel: ContentViewModel) {
+        self.viewModel = viewModel
+    }
+
+    // MARK: - body
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(viewModel.text)
+
+            Button("テキスト追加") {
+                viewModel.tapButton()
+            }
         }
         .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: ContentViewModel())
 }

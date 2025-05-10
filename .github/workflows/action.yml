@@ -1,25 +1,4 @@
-# name: SwiftLint
-# on:
-#   pull_request:
-#     types:
-#       - opened
-#       - synchronize
-#     branches:
-#       - main
-
-# jobs:
-#   lint: 
-#     runs-on: macos_latest
-#     steps:
-#       - name: Check out code
-#         uses: actions/checkout@v4
-#       - name: Install SwiftLint
-#         run: brew install swiftlint
-#       - name: Run SwiftLint
-#         run: swiftlint
-
-
-name: Danger Swift
+name: iOS CI/CD
 
 on:
   pull_request:
@@ -37,21 +16,24 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      # - name: Setup Swift
-      #   uses: swift-actions/setup-swift@v2
-      #   with:
-      #     swift-version: '6.1'
-
-      # - name: Danger
-      #   uses: danger/swift@3.21.1
-      #   with:
-      #     arg: --failOnErrors --no-publish-check
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Run Danger SwiftLint
         uses: 417-72KI/danger-swiftlint@v6.1
         with:
           arg: --failOnErrors
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "16.1"
+
+      - name: UnitTests
+        run: xcodebuild test -project ./GitHubActionSampleApp.xcodeproj -scheme GitHubActionSampleApp -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.2' -skipPackagePluginValidation

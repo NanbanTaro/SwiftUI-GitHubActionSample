@@ -12,7 +12,8 @@ import SwiftUI
 struct GitHubActionSampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let viewModel = ContentViewModel()
+            ContentView(viewModel: ContentViewModel())
         }
     }
 }
