@@ -45,13 +45,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   unit-tests:
-    name: Run Danger Swift
+    name: Unit Tests
     runs-on: macos-latest
     steps:
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: "16.1"
+
+      - name: Show project structure
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "List of files:"
+          ls -al
+          echo "Searching for .xcodeproj recursively:"
+          find . -name "*.xcodeproj"
 
       - name: UnitTests
         run: xcodebuild test \
