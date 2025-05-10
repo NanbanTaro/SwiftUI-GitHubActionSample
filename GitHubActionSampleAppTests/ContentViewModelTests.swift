@@ -28,6 +28,6 @@ struct ContentViewModelTests {
         
         viewModel.tapButton()
         
-        #expect(viewModel.text == "たぬきか")
+        #expect(viewModel.text == "たぬき")
     }
 }
