@@ -64,6 +64,9 @@ jobs:
           echo "Searching for .xcodeproj recursively:"
           find . -name "*.xcodeproj"
 
+      - name: Show project structure
+        run: xcodebuild -help
+
       - name: UnitTests
         run: xcodebuild test \
               -project ./GitHubActionSampleApp.xcodeproj \
