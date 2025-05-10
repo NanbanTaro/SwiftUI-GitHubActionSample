@@ -57,7 +57,7 @@ jobs:
           xcode-version: "16.1"
 
       - name: Setup Xcode
-      - uses: maxim-lobanov/setup-xcode@v1
+        uses: maxim-lobanov/setup-xcode@v1
         with:
           swift-version: '6.1'
 
