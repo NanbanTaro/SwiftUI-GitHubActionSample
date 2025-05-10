@@ -63,7 +63,6 @@ jobs:
 
       - name: UnitTests
         run: xcodebuild test \
-              -project GitHubActionSampleApp.xcodeproj \
               -scheme GitHubActionSampleApp \
               -sdk iphonesimulator \
               -destination platform='iOS Simulator,name=iPhone 16,OS=18.2'
