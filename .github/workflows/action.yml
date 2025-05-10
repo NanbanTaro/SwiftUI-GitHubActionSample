@@ -45,12 +45,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Xcode
-      - uses: maxim-lobanov/setup-xcode@v1
+        uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: "16.1"
 
       - name: UnitTests
-      - run: xcodebuild test \
+        run: xcodebuild test \
               -project GitHubActionSampleApp.xcodeproj \
               -scheme GitHubActionSampleApp \
               -sdk iphonesimulator \
