@@ -50,7 +50,7 @@ jobs:
           xcode-version: "16.1"
 
       - name: UnitTests
-        run: xcodebuild test \
+      - run: xcodebuild test \
               -project GitHubActionSampleApp.xcodeproj \
               -scheme GitHubActionSampleApp \
               -sdk iphonesimulator \
