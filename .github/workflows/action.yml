@@ -27,9 +27,10 @@ jobs:
     name: Unit Tests
     runs-on: macos-latest
     strategy:
-      xcode: ['16.1']
-      os: [18.0, 18.2]
-      device: ['iPhone 15', 'iPhone 16']
+      matrix:
+        xcode: ['16.1']
+        os: [18.0, 18.2]
+        device: ['iPhone 15', 'iPhone 16']
     steps:
       - name: Check out code
         uses: actions/checkout@v4
