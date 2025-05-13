@@ -30,6 +30,23 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Cache DerivedData
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-build-
+
+      - name: Cache SPM
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.swiftpm
+            ~/.build
+            ~/Library/Caches/org.swift.swiftpm
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
