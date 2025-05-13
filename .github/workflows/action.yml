@@ -29,8 +29,8 @@ jobs:
     strategy:
       matrix:
         xcode: ['16.1']
-        os: [18.0, 18.2]
-        device: ['iPhone 15', 'iPhone 16']
+        os: [18.2]
+        device: ['iPhone 16', 'iPhone SE (3rd generation)']
     steps:
       - name: Check out code
         uses: actions/checkout@v4
