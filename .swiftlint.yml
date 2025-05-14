@@ -89,6 +89,7 @@ generic_type_name:
   min_length: 1
   max_length: 30
 
+# 端的で簡潔な命名を推奨する
 identifier_name:
   min_length: 2
   max_length: 30

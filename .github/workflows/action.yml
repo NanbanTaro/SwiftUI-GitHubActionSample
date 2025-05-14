@@ -26,14 +26,36 @@ jobs:
   unit-tests:
     name: Unit Tests
     runs-on: macos-latest
+    strategy:
+      matrix:
+        xcode: ['16.1']
+        os: [18.2]
+        device: ['iPhone 16', 'iPhone SE (3rd generation)']
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Cache DerivedData
+        uses: actions/cache@v3
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-build-
+
+      - name: Cache SPM
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.swiftpm
+            ~/.build
+            ~/Library/Caches/org.swift.swiftpm
+          key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "16.1"
+          xcode-version: ${{ matrix.xcode }}
 
       - name: UnitTests
-        run: xcodebuild test -project ./GitHubActionSampleApp.xcodeproj -scheme GitHubActionSampleApp -sdk iphonesimulator -destination platform='iOS Simulator,name=iPhone 16,OS=18.2' -skipPackagePluginValidation
+        run: xcodebuild test -project ./GitHubActionSampleApp.xcodeproj -scheme GitHubActionSampleApp -sdk iphonesimulator -destination platform='iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.os }}' -skipPackagePluginValidation
